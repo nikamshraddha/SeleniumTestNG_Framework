@@ -2,14 +2,11 @@ package TestCases;
 
 import java.io.IOException;
 
-
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-
 import Resources.BaseClass;
 import Resources.Constants;
+import Resources.commonMethods;
 import PageObjectModel.LoginPageObject;
 
 
@@ -26,18 +23,11 @@ public class LoginTestCase extends BaseClass {
 		lpo.enterpassword().sendKeys(password);
 		lpo.enterlogin().click();
 		
+		commonMethods.verifyAssertions(lpo.errorMessage(),Constants.ExpectedTextMessage, "Valid Error message is not showing");
 		
 		
-		WebElement a = lpo.errorMessage();
-		String actualText=a.getText();
-		
-		String ExpectedText=Constants.ExpectedTextMessage;
 		
 		
-		SoftAssert sa = new SoftAssert();
-		sa.assertEquals(actualText,ExpectedText,"Valid error message is not showing");  
-		
-		sa.assertAll();
 		
 		
 	}

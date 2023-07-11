@@ -2,6 +2,7 @@ package Resources;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.asserts.SoftAssert;
 
 public class commonMethods {
 	
@@ -15,12 +16,31 @@ public class commonMethods {
 	
 	
 	//we can also use visibleText/Value
-	/*public static void selectDropdownWithVisibleText(WebElement element,String visibleText) {
+		public static void selectDropdownWithVisibleText(WebElement element,String visibleText) {
+			
+			WebElement a = element;
+			Select s = new Select(a);
+			s.selectByVisibleText( visibleText);
+		}
 		
-		WebElement a = element;
-		Select s = new Select(a);
-		s.selectByVisibleText( visibleText);
-	}*/
+	
+
+	public static void verifyAssertions(WebElement actual, String expectedText, String message ) {
+		
+		WebElement a = actual;
+		String actualText=a.getText();
+		String ExpectedText= expectedText;
+		
+		
+		SoftAssert sa = new SoftAssert();
+		sa.assertEquals(actualText,ExpectedText,message);  
+		
+		sa.assertAll();
+		
+		
+		
+		
+	}
 	
 
 	
